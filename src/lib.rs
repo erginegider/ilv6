@@ -31,13 +31,27 @@ pub enum FileCommand {
         path: String
     },
     /// Copies the file (Duplicates)
-    Copy{
+    Copy {
         /// Source filename
         #[arg(short, long, value_name = "SOURCEFILENAME")]
         source: String,
 
         /// Destination filename
-        #[arg(short,long, value_name = "DESTINATIONFILENAME")]
+        #[arg(short, long, value_name = "DESTINATIONFILENAME")]
         destination: String,
-    }
+    },
+    /// Replace action
+    Replace {
+        /// Filename to search and replace
+        #[arg(short, long, value_name = "FILENAME")]
+        filename: String,
+
+        /// A text to replace
+        #[arg(short, long, value_name = "SOURCETEXT")]
+        source: String,
+
+        /// New text to add
+        #[arg(short, long, value_name = "DESTINATIONTEXT")]
+        target: String,
+    },
 }

@@ -9,7 +9,7 @@ use std::io::prelude::*;
 use std::path::Path;
 use colored::Colorize;
 use globwalker::GlobWalkerBuilder;
-use crate::helper::list_path;
+use crate::helper::{list_path, search_replace};
 
 mod helper;
 
@@ -31,6 +31,9 @@ fn main() -> std::io::Result<()> {
         FileCommand::Copy { source, destination } => {
             println!("Copy from {} to {}", source, destination);
             fs::copy(source, destination);
+        }
+        FileCommand::Replace { filename, source, target } => {
+            search_replace(&filename, &source, &target);
         }
     }
     Ok(())
